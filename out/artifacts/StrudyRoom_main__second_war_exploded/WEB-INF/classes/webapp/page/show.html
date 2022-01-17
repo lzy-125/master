@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../layui/css/layui.css">
+</head>
+<body>
+<div align="top">
+    <ul class="layui-nav" lay-filter="">
+        <li class="layui-nav-item layui-this"><a href="/a1" th:text="${login}"></a></li>
+        <li class="layui-nav-item layui-this"><a href="/center" th:text="${session.name}"></a></li>
+        <li class="layui-nav-item"><a href="/a1" th:text="${session.quit}"></a></li>
+    </ul>
+</div>
+<!--<a href="/center"></span></a>-->
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="page-header">
+                <h1>
+                    <small style="color: #1E9FFF">座位列表</small>
+                </h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4 column">
+            <a class="btn btn-primary" href="/c4">显示全部座位</a>
+            <a class="btn btn-primary" href="/c3">显示未被占用座位</a>
+    </div>
+</div>
+            <form action="/c2" method="post" class="layui-form">
+                <!--                <span th:text="${error}" style="color: #ff0000;font-weight: bold"></span>-->
+                <div class="layui-form-item">
+                <input type="text" name="searchById" class="layui-input" placeholder="请输入要查询的座位号">
+                </div>
+                <div class="layui-form-item">
+                <input type="submit" value="搜索" class="btn btn-primary">
+                </div>
+            </form>
+<div align="center">
+<div class="row">
+    <div class="col-md-4 column">
+        <div class="table table-hover table-striped">
+            <table class="layui-table" lay-even lay-skin="nob">
+                <colgroup>
+                    <col width="300">
+                    <col width="450">
+                    <col>
+                </colgroup>
+                <thead>
+                <tr>
+                    <th>座位号</th>
+                    <th>座位操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="emp:${page.chairs_signals}">
+                    <td th:text="${emp.getId()}"></td>
+                    <td>
+                        <a th:href="@{/c5(id=${emp.getId()},name=${session.name})}" method="post">抢座</a>
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+
+            <div class="panel-footer">
+                <nav style="text-align: center">
+                    <ul class="pagination">
+                        <li><a th:href="@{/c1(currentPage=1)}">首页</a></li>
+                        <li><a th:href="@{/c1(currentPage=${page.getCurrentPage()-1})}">上一页</a></li>
+                        <li><a th:href="@{/c1(currentPage=${page.getCurrentPage()+1})}">下一页</a></li>
+                        <li><a th:href="@{/c1(currentPage=${page.getTotalPage()})}">尾页</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>显示我的座位</title>
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../layui/css/layui.css">
+    <script>
+        layui.use('element', function(){
+            var element = layui.element;
+
+            //…
+        });
+    </script>
+</head>
+<body>
+<div align="top">
+    <ul class="layui-nav" lay-filter="">
+        <li class="layui-nav-item layui-this" ><a href="/center" th:text="${session.name}"></a></li>
+<!--        <li class="layui-nav-item">-->
+<!--            <a href="javascript:;">选项</a>-->
+<!--            <dl class="layui-nav-child"> &lt;!&ndash; 二级菜单 &ndash;&gt;-->
+<!--                <dd><a href="/a1" th:text="${session.quit}"></a></dd>-->
+<!--            </dl>-->
+<!--        </li>-->
+        <li class="layui-nav-item"><a href="/a1" th:text="${session.quit}"></a></li>
+    </ul>
+</div>
+<div class="container">
+
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="page-header">
+                <h1>
+                    <small style="color:#1E9FFF;">我的座位列表</small>
+                </h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--<div class="row">-->
+<!--    <div class="col-md-4 column">-->
+<!--        <div class="table table-hover table-striped">-->
+
+<!--&lt;!&ndash;            <a class="btn btn-primary" href="/c4">显示全部座位</a>&ndash;&gt;-->
+<!--&lt;!&ndash;            <a class="btn btn-primary" href="/c3">显示未被占用座位</a>&ndash;&gt;-->
+
+<!--            <form action="/c2" method="post">-->
+<!--                &lt;!&ndash;                <span th:text="${error}" style="color: #ff0000;font-weight: bold"></span>&ndash;&gt;-->
+<!--                <input type="text" name="searchById" class="form-control" placeholder="请输入要查询的座位号">-->
+<!--                <input type="submit" value="搜索" class="btn btn-primary">-->
+<!--            </form>-->
+
+<!--            <table>-->
+<!--                <thead>-->
+<!--                <tr>-->
+<!--                    <th>座位号</th>-->
+<!--                    <th>座位操作</th>-->
+<!--                </tr>-->
+<!--                </thead>-->
+<!--                <tbody>-->
+<!--                <tr th:each="charis:${list}">-->
+<!--                    <td th:text="${charis.getId()}"></td>-->
+<!--                    <td>-->
+<!--                        <a th:href="@{/exitChair(id=${charis.getId()},name=${session.name})}" method="post">退座</a>-->
+
+<!--                    </td>-->
+
+<!--                </tr>-->
+<!--                </tbody>-->
+<!--            </table>-->
+
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<div align="center">
+<div class="row">
+    <div class="col-md-4 column">
+        <div class="table table-hover table-striped">
+            <form action="/c2" method="post" class="layui-form">
+                <!--                <span th:text="${error}" style="color: #ff0000;font-weight: bold"></span>-->
+                <div class="layui-form-item">
+                    <input type="text" name="searchById" class="form-control" placeholder="请输入要查询的座位号">
+                </div>
+                <div class="layui-form-item">
+                    <input type="submit" value="搜索" class="btn btn-primary">
+                </div>
+            </form>
+            <div class="row">
+                <div class="col-md-4 column">
+                    <div class="table table-hover table-striped">
+                        <table class="layui-table" lay-even lay-skin="nob">
+                            <colgroup>
+                                <col width="150">
+                                <col width="200">
+                                <col>
+                            </colgroup>
+                            <thead>
+                            <tr>
+                                <th>座位号</th>
+                                <th>座位操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="charis:${list}">
+                                <td th:text="${charis.getId()}"></td>
+                                <td>
+                                    <a th:href="@{/exitChair(id=${charis.getId()},name=${session.name})}" method="post">退座</a>
+
+                                </td>
+
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+
+</body>
+</html>

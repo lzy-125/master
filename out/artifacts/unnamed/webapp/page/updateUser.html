@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<script>
+    document.documentElement.style.overflow="hidden";
+    function check(){
+        var name = document.getElementById("name").value;
+        var password = document.getElementById("password").value;
+        if(name == ""){
+            alert("账号不能为空");
+            return false;
+        }
+        if(password == ""){
+            alert("密码不能为空");
+            return false;
+        }
+
+        return true;
+    }
+</script>
+
+<body>
+
+<form action="/update" method="post" onsubmit="check()" class="layui-form">
+<!--    用户名:<input type="text" name="username" id="name">-->
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户名</label>
+        <div class="layui-input-block">
+            <input type="text" name="username" id="name" required  lay-verify="required" placeholder="请输入用户名">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">密码</label>
+        <div class="layui-input-inline">
+            <input type="password" name="password" id="password" required  lay-verify="required" placeholder="请输入密码" class="layui-input">
+        </div>
+    </div>
+<!--    密码:<input type="password" name="password" id="password">-->
+<!--        <input type="submit" value="重置" class="btn btn-primary">-->d
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <input type="submit" name="login" value="重置" 	class="layui-btn layui-btn-normal">
+        </div>
+    </div>
+</form>
+</body>
+</html>
